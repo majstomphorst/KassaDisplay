@@ -24,7 +24,7 @@ namespace EventHandelingTest
             ProductCatalogus = new ProductCatalogus(ProductList);
             Kassa = new Kassa(ProductCatalogus);
             Console = new ConsoleKassaInterface(Kassa);
-            Kassa.setDisplay(Console);
+            // Kassa.setDisplay(Console);
         }
 
         [Test]
@@ -68,7 +68,7 @@ namespace EventHandelingTest
             var productCatalogus = new ProductCatalogus(productList);
             IKassa kassa = new Kassa(productCatalogus);
             ConsoleKassaInterface console = new ConsoleKassaInterface(kassa);
-            kassa.setDisplay(console);
+            // kassa.setDisplay(console);
 
             // test
             var test1 = kassa.handleBarcode("01");

@@ -25,7 +25,7 @@ namespace EventHandelingTest
             ProductCatalogus = new ProductCatalogus(ProductList);
             Kassa = new Kassa(ProductCatalogus);
             Console = new ConsoleKassaInterface(Kassa);
-            Kassa.setDisplay(Console);
+            // Kassa.setDisplay(Console);
         }
 
         [Test]

@@ -4,19 +4,16 @@ using System.Linq;
 
 namespace EventHandeling
 {
-    public class Kassa : IKassa
+    public class Kassa
     {
         public IProductCatalogus Catalogus { get; set; }
-        private IKassaDisplay Display { get; set; } = null;
+        // private IKassaDisplay Display { get; set; } = null;
         public List<IProduct> Cart { get; private set; } = new List<IProduct>();
 
         public event EventHandler<BarcodeScandedEventArgs> BarcodeScanded;
         public event EventHandler<PaymentMadeEventArgs> PaymentMade;
-
-        private static EventArgs GetEmpty()
-        {
-            return EventArgs.Empty;
-        }
+        public event EventHandler<RaiseDisplayEventArgs> ClientDisplay;
+        public event EventHandler<RaiseDisplayAllProductsEventARgs> DisplayAllProducts;
 
         public Kassa(IProductCatalogus catalogus)
         {
@@ -34,8 +31,8 @@ namespace EventHandeling
             if (product != null)
             {
                 Cart.Add(product);
-                Display.DisplayClientScreen(String.Format("TOTAAL {0:c}", GetTotalCartPrice()), product.ToString());
                 RaiseBarcodeScaned(barcode);
+                RaiseClientDisplay(GetTotalCartPrice(), product.ToString());
                 return true;
             }
 
@@ -59,21 +56,15 @@ namespace EventHandeling
             return -1;
         }
 
-        public void setDisplay(IKassaDisplay kassaDisplay)
-        {
-            Display = kassaDisplay;
-        }
-
         /// <summary>
         /// Show all products
         /// </summary>
         public void showAllProducts()
         {
-            if (Display != null)
-            {
-                var i = Catalogus.GetAllProducts();
-                Display.DisplayProducts(i);
-            }
+            var allProducts = Catalogus.GetAllProducts();
+
+            RaiseDisplayAllProducts(allProducts);
+
         }
 
         private decimal GetTotalCartPrice()
@@ -87,6 +78,28 @@ namespace EventHandeling
                 }
             }
             return count;
+        }
+
+        protected virtual void RaiseDisplayAllProducts(IList<IProduct> list)
+        {
+            if (DisplayAllProducts != null)
+            {
+                DisplayAllProducts(this, new RaiseDisplayAllProductsEventARgs{
+                    Products = list
+                });
+            }
+        }
+
+        protected virtual void RaiseClientDisplay(decimal totalCartPrice, string productString )
+        {
+            if (ClientDisplay != null)
+            {
+                ClientDisplay(this, new RaiseDisplayEventArgs()
+                {
+                    TotalPrice = totalCartPrice,
+                    ProductInformationString = productString
+                });
+            }
         }
 
         protected virtual void RaiseBarcodeScaned(string barcode)

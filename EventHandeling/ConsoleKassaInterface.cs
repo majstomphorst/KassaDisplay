@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace EventHandeling
 {
@@ -8,11 +9,10 @@ namespace EventHandeling
     /// </summary>
     public class ConsoleKassaInterface : IKassaDisplay
     {
-        public IKassa Kassa { get; }
+        public Kassa Kassa { get; }
 
-        public ConsoleKassaInterface(IKassa kassa) {
+        public ConsoleKassaInterface(Kassa kassa) {
             Kassa = kassa;
-            Kassa.setDisplay(this);
             Kassa.showAllProducts();
         }
 
@@ -60,7 +60,7 @@ namespace EventHandeling
         }
 
         public void DisplayClientScreen(string line1, string line2) {
-            Console.Out.WriteLine("==========================================");
+            Console.Out.WriteLine("===========DisplayClientScreen============");
             Console.Out.WriteLine("|{0,-40}|", line1);
             Console.Out.WriteLine("|{0,-40}|", line2);
             Console.Out.WriteLine("==========================================");
@@ -74,5 +74,18 @@ namespace EventHandeling
             }
             Console.Out.WriteLine("=========================================================");
         }
+
+        public void RaiseClientDisplay(object source,  RaiseDisplayEventArgs e)
+        {
+            DisplayClientScreen(
+                e.TotalPrice.ToString("C", CultureInfo.CurrentCulture),
+                e.ProductInformationString);
+        }
+
+        public void RaiseDisplayAllProducts(object source, RaiseDisplayAllProductsEventARgs e)
+        {
+            DisplayProducts(e.Products);
+        }
+
     }
 }
