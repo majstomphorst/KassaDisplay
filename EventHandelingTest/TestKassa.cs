@@ -38,17 +38,7 @@ namespace EventHandelingTest
         {
             // repare
             PrepareNormalKassa();
-            //var productList = new List<IProduct>
-            //{
-            //    new Product("01", "Test product 01!", 0.01m),
-            //    new Product("02", "Test product 02!", 0.02m)
-            //};
             decimal payedAmount = 1m;
-
-            //var productCatalogus = new ProductCatalogus(productList);
-            //IKassa kassa = new Kassa(productCatalogus);
-            //ConsoleKassaInterface console = new ConsoleKassaInterface(kassa);
-            //kassa.setDisplay(console);
 
             // test
             decimal i = 0m;
@@ -64,8 +54,6 @@ namespace EventHandelingTest
                 Assert.Fail("sum is incorrect! {0}",i);
             }
         }
-
-
 
         [Test]
         public void TesthandleBarcode()
@@ -96,10 +84,6 @@ namespace EventHandelingTest
             {
                 Assert.Fail("Product found where none should be!");
             }
-
-
-
-
         }
     }
 }

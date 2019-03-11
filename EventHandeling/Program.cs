@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 
 namespace EventHandeling
 {
@@ -8,8 +6,13 @@ namespace EventHandeling
     {
         static void Main(string[] args) {
             var productCatalogus = new ProductCatalogus();
-            IKassa kassa = new Kassa(productCatalogus);
+            Kassa kassa = new Kassa(productCatalogus); // publisher 
             var console = new ConsoleKassaInterface(kassa);
+
+            var magazijn = new Magazijn(); // subscriber
+
+            // subsribe to the kassa
+            kassa.BarcodeScanded += magazijn.OnBarcodeScaned;
 
             console.Run();
         }
