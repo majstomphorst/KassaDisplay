@@ -1,7 +1,9 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHandeling", "EventHandeling.csproj", "{9AAFD0A5-3BF9-4AE7-85FB-5F576AD46813}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHandeling", "EventHandeling\EventHandeling.csproj", "{9AAFD0A5-3BF9-4AE7-85FB-5F576AD46813}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventHandelingTest", "EventHandelingTest\EventHandelingTest.csproj", "{F53585A4-2F31-481E-AC12-4586D075D9BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,5 +15,9 @@ Global
 		{9AAFD0A5-3BF9-4AE7-85FB-5F576AD46813}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9AAFD0A5-3BF9-4AE7-85FB-5F576AD46813}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9AAFD0A5-3BF9-4AE7-85FB-5F576AD46813}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F53585A4-2F31-481E-AC12-4586D075D9BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F53585A4-2F31-481E-AC12-4586D075D9BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F53585A4-2F31-481E-AC12-4586D075D9BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F53585A4-2F31-481E-AC12-4586D075D9BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
