@@ -9,11 +9,10 @@ namespace EventHandeling
         public IProductCatalogus Catalogus { get; set; }
         // private IKassaDisplay Display { get; set; } = null;
         public List<IProduct> Cart { get; private set; } = new List<IProduct>();
-
-        public event EventHandler<BarcodeScandedEventArgs> BarcodeScanded;
+        public event EventHandler<BarcodeEventArgs> BarcodeScanned;
         public event EventHandler<PaymentMadeEventArgs> PaymentMade;
-        public event EventHandler<RaiseDisplayEventArgs> ClientDisplay;
-        public event EventHandler<RaiseDisplayAllProductsEventARgs> DisplayAllProducts;
+        public event EventHandler<DisplayEventArgs> DisplayToClient;
+        public event EventHandler<ProductsEventArgs> DisplayAllProducts;
 
         public Kassa(IProductCatalogus catalogus)
         {
@@ -31,8 +30,8 @@ namespace EventHandeling
             if (product != null)
             {
                 Cart.Add(product);
-                RaiseBarcodeScaned(barcode);
-                RaiseClientDisplay(GetTotalCartPrice(), product.ToString());
+                RaiseBarcodeScanned(barcode);
+                RaiseClientDisplay(GetTotalCartPrice(), product);
                 return true;
             }
 
@@ -62,11 +61,9 @@ namespace EventHandeling
         public void showAllProducts()
         {
             var allProducts = Catalogus.GetAllProducts();
-
             RaiseDisplayAllProducts(allProducts);
 
         }
-
         private decimal GetTotalCartPrice()
         {
             decimal count = 0m;
@@ -84,33 +81,26 @@ namespace EventHandeling
         {
             if (DisplayAllProducts != null)
             {
-                DisplayAllProducts(this, new RaiseDisplayAllProductsEventARgs{
+                DisplayAllProducts(this, new ProductsEventArgs{
                     Products = list
                 });
             }
         }
 
-        protected virtual void RaiseClientDisplay(decimal totalCartPrice, string productString )
+        protected virtual void RaiseClientDisplay(decimal totalCartPrice, IProduct product )
         {
-            if (ClientDisplay != null)
+            if (DisplayToClient != null)
             {
-                ClientDisplay(this, new RaiseDisplayEventArgs()
-                {
-                    TotalPrice = totalCartPrice,
-                    ProductInformationString = productString
-                });
+                DisplayToClient(this, new DisplayEventArgs(totalCartPrice, product));
             }
         }
 
-        protected virtual void RaiseBarcodeScaned(string barcode)
+        protected virtual void RaiseBarcodeScanned(string barcode)
         {
             // check if there are any subscribers to this event
-            if (BarcodeScanded != null)
+            if (BarcodeScanned != null)
             {
-                BarcodeScanded(this, new BarcodeScandedEventArgs()
-                {
-                    Barcode = barcode
-                });
+                BarcodeScanned(this, new BarcodeEventArgs(barcode));
             }
         }
         protected virtual void RaisePayment()

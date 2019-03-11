@@ -6,7 +6,7 @@ namespace EventHandeling
     class Magazijn 
     {
         private List<string> ScanedBarcodes = new List<string>();
-        public void RaiseBarcodeScaned(object source, BarcodeScandedEventArgs e)
+        public void RaiseBarcodeScaned(object source, BarcodeEventArgs e)
         {
             ScanedBarcodes.Add(e.Barcode);
         }

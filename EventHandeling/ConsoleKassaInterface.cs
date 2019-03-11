@@ -7,7 +7,7 @@ namespace EventHandeling
     /// <summary>
     /// Class for all interaction with the console for the kassa
     /// </summary>
-    public class ConsoleKassaInterface : IKassaDisplay
+    public class ConsoleKassaInterface
     {
         public Kassa Kassa { get; }
 
@@ -75,14 +75,14 @@ namespace EventHandeling
             Console.Out.WriteLine("=========================================================");
         }
 
-        public void RaiseClientDisplay(object source,  RaiseDisplayEventArgs e)
+        public void HandleClientDisplay(object source, DisplayEventArgs e)
         {
             DisplayClientScreen(
                 e.TotalPrice.ToString("C", CultureInfo.CurrentCulture),
-                e.ProductInformationString);
+                e.ProductInfo);
         }
 
-        public void RaiseDisplayAllProducts(object source, RaiseDisplayAllProductsEventARgs e)
+        public void HandleDisplayAllProducts(object source, ProductsEventArgs e)
         {
             DisplayProducts(e.Products);
         }

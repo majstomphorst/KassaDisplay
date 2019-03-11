@@ -2,7 +2,7 @@
 {
     public interface IKassa
     {
-        void setDisplay(IKassaDisplay kassaDisplay);
+        // void setDisplay(IKassaDisplay kassaDisplay);
 
         /// <summary>
         /// Handle a scan of a barcode
