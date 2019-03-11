@@ -4,34 +4,20 @@ using System.Linq;
 
 namespace EventHandeling
 {
-    public class BarcodeScandedEventArgs : EventArgs 
-    {
-        public string Barcode { get; set; }
-    }
     public class Kassa : IKassa
     {
         public IProductCatalogus Catalogus { get; set; }
         private IKassaDisplay Display { get; set; } = null;
         public List<IProduct> Cart { get; private set; } = new List<IProduct>();
 
-        // 1. define a delagete
-        public delegate void BarcodeScanedEventHandler(object source, BarcodeScandedEventArgs args);
-         // 2, define event
-        public event BarcodeScanedEventHandler BarcodeScanded;
-        
-        // 3. raise the event
-        protected virtual void OnBarcodeScaned(string barcode)
+        public event EventHandler<BarcodeScandedEventArgs> BarcodeScanded;
+        public event EventHandler<PaymentMadeEventArgs> PaymentMade;
+
+        private static EventArgs GetEmpty()
         {
-            // check if there are any subscribers to this event
-            if (BarcodeScanded != null)
-            {
-                BarcodeScanded(this, new BarcodeScandedEventArgs(){
-                    Barcode = barcode
-                });
-            }
+            return EventArgs.Empty;
         }
-        
-        
+
         public Kassa(IProductCatalogus catalogus)
         {
             Catalogus = catalogus ?? throw new NullReferenceException("catalogus");
@@ -49,10 +35,10 @@ namespace EventHandeling
             {
                 Cart.Add(product);
                 Display.DisplayClientScreen(String.Format("TOTAAL {0:c}", GetTotalCartPrice()), product.ToString());
-                OnBarcodeScaned(barcode);
+                RaiseBarcodeScaned(barcode);
                 return true;
             }
-            
+
             return false;
         }
 
@@ -66,6 +52,7 @@ namespace EventHandeling
             if (Cart.Any())
             {
                 amount = amount - GetTotalCartPrice();
+                RaisePayment();
                 Cart = new List<IProduct>();
                 return amount;
             }
@@ -100,6 +87,28 @@ namespace EventHandeling
                 }
             }
             return count;
+        }
+
+        protected virtual void RaiseBarcodeScaned(string barcode)
+        {
+            // check if there are any subscribers to this event
+            if (BarcodeScanded != null)
+            {
+                BarcodeScanded(this, new BarcodeScandedEventArgs()
+                {
+                    Barcode = barcode
+                });
+            }
+        }
+        protected virtual void RaisePayment()
+        {
+            if (PaymentMade != null)
+            {
+                PaymentMade(this, new PaymentMadeEventArgs()
+                {
+                    Cart = this.Cart
+                });
+            }
         }
 
     }
