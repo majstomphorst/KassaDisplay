@@ -107,10 +107,7 @@ namespace EventHandeling
         {
             if (PaymentMade != null)
             {
-                PaymentMade(this, new PaymentMadeEventArgs()
-                {
-                    Cart = this.Cart
-                });
+                PaymentMade(this, new PaymentMadeEventArgs(Cart));
             }
         }
 
