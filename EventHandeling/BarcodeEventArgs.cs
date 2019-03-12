@@ -4,12 +4,10 @@ namespace EventHandeling
 {
     public class BarcodeEventArgs : EventArgs 
     {
-        public string Barcode { get; }
-        public BarcodeEventArgs(string barcode)
+        public IProduct Product { get; }
+        public BarcodeEventArgs(IProduct product)
         {
-            Barcode = barcode;
+            Product = product;
         }
-
-        
     }
 }

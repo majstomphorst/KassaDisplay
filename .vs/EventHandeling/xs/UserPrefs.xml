@@ -2,21 +2,36 @@
   <MonoDevelop.Ide.ItemProperties.EventHandeling PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.Workbench ActiveDocument="EventHandeling/Kassa.cs">
     <Files>
-      <File FileName="EventHandeling/Program.cs" Line="30" Column="30" />
-      <File FileName="EventHandeling/ConsoleKassaInterface.cs" Line="21" Column="1" />
-      <File FileName="EventHandeling/ProductCatalogus.cs" Line="21" Column="1" />
-      <File FileName="EventHandeling/Product.cs" Line="1" Column="1" />
-      <File FileName="EventHandeling/Kassa.cs" Line="28" Column="41" NotebookId="1" />
+      <File FileName="EventHandelingTest/ProductCatalogusTest.cs" Line="1" Column="1" />
+      <File FileName="EventHandelingTest/KassaTest.cs" Line="121" Column="37" />
+      <File FileName="EventHandeling/interface/IKassa.cs" Line="19" Column="25" />
+      <File FileName="EventHandeling/ProductCatalogus.cs" Line="16" Column="36" />
+      <File FileName="EventHandeling/Program.cs" Line="28" Column="1" />
+      <File FileName="EventHandelingTest/TestProductCatalogus.cs" Line="7" Column="1" />
+      <File FileName="EventHandeling/Kassa.cs" Line="27" Column="21" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="EventHandeling" expanded="True">
             <Node name="EventHandeling" expanded="True">
-              <Node name="interface" expanded="True" />
               <Node name="Kassa.cs" selected="True" />
             </Node>
             <Node name="EventHandelingTest" expanded="True" />
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.UnitTesting.TestPad">
+        <State name="__root__">
+          <Node name="EventHandeling" expanded="True">
+            <Node name="EventHandelingTest" expanded="True">
+              <Node name="EventHandelingTest" expanded="True">
+                <Node name="KassaTest" expanded="True">
+                  <Node name="TestHandleBarcode" selected="True" />
+                </Node>
+                <Node name="ProductCatalogusTest" expanded="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>

@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace EventHandeling
 {
-    public class Kassa
+    public class Kassa : IKassa
     {
         public IProductCatalogus Catalogus { get; set; }
         // private IKassaDisplay Display { get; set; } = null;
@@ -30,7 +30,7 @@ namespace EventHandeling
             if (product != null)
             {
                 Cart.Add(product);
-                RaiseBarcodeScanned(barcode);
+                RaiseBarcodeScanned(product);
                 RaiseClientDisplay(GetTotalCartPrice(), product);
                 return true;
             }
@@ -48,11 +48,16 @@ namespace EventHandeling
             if (Cart.Any())
             {
                 amount = amount - GetTotalCartPrice();
+                if (amount < 0m)
+                {
+                    return -1;
+                }
                 RaisePayment();
                 Cart = new List<IProduct>();
+
                 return amount;
             }
-            return -1;
+            return amount;
         }
 
         /// <summary>
@@ -62,8 +67,8 @@ namespace EventHandeling
         {
             var allProducts = Catalogus.GetAllProducts();
             RaiseDisplayAllProducts(allProducts);
-
         }
+
         private decimal GetTotalCartPrice()
         {
             decimal count = 0m;
@@ -95,20 +100,18 @@ namespace EventHandeling
             }
         }
 
-        protected virtual void RaiseBarcodeScanned(string barcode)
+        protected virtual void RaiseBarcodeScanned(IProduct product)
         {
             // check if there are any subscribers to this event
             if (BarcodeScanned != null)
             {
-                BarcodeScanned(this, new BarcodeEventArgs(barcode));
+                BarcodeScanned(this, new BarcodeEventArgs(product));
             }
         }
         protected virtual void RaisePayment()
         {
-            if (PaymentMade != null)
-            {
-                PaymentMade(this, new PaymentMadeEventArgs(Cart));
-            }
+            var copyOfPaymentMade = PaymentMade;
+            copyOfPaymentMade?.Invoke(this, new PaymentMadeEventArgs(Cart));
         }
 
     }

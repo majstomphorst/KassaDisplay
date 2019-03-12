@@ -6,7 +6,7 @@ namespace EventHandeling
     {
         public decimal TotalPrice { get; }
         public IProduct Product { get; }
-        public string ProductInfo { get { return Product.ToString(); } }
+        public string ProductInfo { get { return Product.ToFormattedString(); } }
 
         public DisplayEventArgs(decimal totalPrice, IProduct product)
         {

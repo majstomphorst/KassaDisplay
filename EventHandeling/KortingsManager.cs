@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace EventHandeling
 {
-    class Magazijn 
+    public class KortingsManager
     {
-        private List<string> ScanedBarcodes = new List<string>();
         public void RaiseBarcodeScaned(object source, BarcodeEventArgs e)
         {
-            ScanedBarcodes.Add(e.Product.Barcode);
+            System.Console.WriteLine(e.Product.ToFormattedString());
+            System.Console.WriteLine("yo");
         }
     }
 }

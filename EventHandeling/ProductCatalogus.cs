@@ -13,7 +13,7 @@ namespace EventHandeling
         {
             Products = new List<IProduct>
             {
-                new Product("01", "Buy this produc: It is sick!", 1m),
+                new Product("01", "Buy this product: It is sick!", 1m),
                 new Product("02", "I do not want to go away", 2m),
                 new Product("03", "I'm a robot.", 3m)
             };

@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using EventHandeling;
 using NUnit.Framework;
-using static EventHandelingTest.ProductCatalogus;
 
 namespace EventHandelingTest
 {
     [TestFixture]
-    public class TestKassa
+    public class KassaTest
     {
 
         [Test]
@@ -118,7 +117,7 @@ namespace EventHandelingTest
             cat.ReturnProduct = null;
             var test2 = kassa.handleBarcode("");
 
-            cat.ReturnProduct = new Product("03", "Test product 03!", 0.50m);
+            cat.ReturnProduct = new Product("04", "Test product 04!", 0.50m);
             var test3 = kassa.handleBarcode("04");
 
             // validate
@@ -127,8 +126,8 @@ namespace EventHandelingTest
             Assert.IsTrue(test3, "Product 04 not found where one should be!");
 
             Assert.AreEqual(2, barcodes.Count);
-            Assert.AreEqual("01", barcodes[0].Barcode);
-            Assert.AreEqual("04", barcodes[1].Barcode);
+            Assert.AreEqual("01", barcodes[0].Product.Barcode);
+            Assert.AreEqual("04", barcodes[1].Product.Barcode);
          }
 
         [Test]

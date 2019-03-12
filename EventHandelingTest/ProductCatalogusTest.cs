@@ -1,53 +1,50 @@
-﻿//using System;
-//using System.Collections;
-//using System.Collections.Generic;
-//using EventHandeling;
-//using NUnit.Framework;
+﻿using EventHandeling;
+using NUnit.Framework;
 
 
-//namespace EventHandelingTest
-//{
-//    [TestFixture]
-//    public class TestProductCatalogus
-//    {
-//        public List<IProduct> ProductList;
-//        public ProductCatalogus ProductCatalogus;
-//        public IKassa Kassa;
-//        public ConsoleKassaInterface Console;
+namespace EventHandelingTest
+{
+    [TestFixture]
+    public class ProductCatalogusTest
+    {
 
-//        public void PrepareNormalKassa()
-//        {
-//            ProductList = new List<IProduct>
-//            {
-//                new Product("01", "Test product 01!", 0.01m),
-//                new Product("02", "Test product 02!", 0.02m)
-//            };
-//            // ProductCatalogus = new ProductCatalogus(ProductList);
-//            // Kassa.setDisplay(Console);
-//        }
+        [Test]
+        public void TestFindProductForBarcode()
+        {
+            // repare
+            var catalogus = new ProductCatalogus();
 
-//        //[Test]
-//        //public void TestFindProductForBarcode()
-//        //{
-//        //    // repare
-//        //    PrepareNormalKassa();
+            // test
+            var test04 = catalogus.FindProductForBarcode("04");
+            var test01 = catalogus.FindProductForBarcode("01");
+            var testKaas = catalogus.FindProductForBarcode("kaas");
 
-//        //    // test
-//        //    var isNull = ProductCatalogus.FindProductForBarcode("04");
-//        //    var product = ProductCatalogus.FindProductForBarcode("01");
-//        //    var product2 = ProductCatalogus.FindProductForBarcode("kaas");
+            // validate
+            Assert.IsNull(test04);
 
-//        //    // validate
-//        //    if (isNull != null && product2 != null)
-//        //    {
-//        //        Assert.Fail("Product found where none should be.");
-//        //    }
+            Assert.IsNotNull(test01);
+            Assert.AreEqual("01", test01.Barcode);
 
-//        //    if (product == null)
-//        //    {
-//        //        Assert.Fail("No product found.");
-//        //    }
-//        //}
+            Assert.IsNull(testKaas);
+        }
 
-//    }
-//}
+        [Test]
+        public void TestGetAllProducts()
+        {
+            // repare
+            var catalogus = new ProductCatalogus();
+
+            // test
+            var allProducts = catalogus.GetAllProducts();
+
+            // validate
+            Assert.IsNotNull(allProducts);
+            Assert.AreEqual(03, allProducts.Count);
+            Assert.AreEqual("Buy this product: It is sick!", allProducts[0].Description);
+
+        }
+
+
+
+    }
+}

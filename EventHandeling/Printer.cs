@@ -11,10 +11,12 @@ namespace EventHandeling
         {
             Console.BackgroundColor = ConsoleColor.DarkBlue;
             var SortedCart = SortCartByProductBarcode(e.Cart);
+            System.Console.WriteLine();
             foreach (var product in SortedCart )
             {
                 System.Console.WriteLine(product.ToString());
             }
+            System.Console.WriteLine();
             Console.ResetColor();
         }
 

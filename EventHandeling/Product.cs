@@ -14,11 +14,10 @@ namespace EventHandeling
             Amount = amount;
         }
 
-        public override string ToString()
+        public string ToFormattedString()
         {
             return String.Format("{0,4} {1,-29} {2:c}", Barcode, Description, Amount);
         }
-
 
     }
 }

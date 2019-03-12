@@ -5,5 +5,8 @@
         string Barcode { get; }
         string Description { get; }
         decimal Amount { get; }
+
+        string ToFormattedString();
     }
+    
 }
