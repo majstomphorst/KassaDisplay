@@ -1,55 +1,27 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using EventHandeling;
-using NUnit.Framework;
-
 
 namespace EventHandelingTest
 {
-    [TestFixture]
-    public class TestProductCatalogus
+
+    public class ProductCatalogus
     {
-        public List<IProduct> ProductList;
-        public ProductCatalogus ProductCatalogus;
-        public IKassa Kassa;
-        public ConsoleKassaInterface Console;
-
-        public void PrepareNormalKassa()
+        internal class TestProductCatalogus : IProductCatalogus
         {
-            ProductList = new List<IProduct>
+            public Product ReturnProduct { get; set; } = null;
+            public List<IProduct> ReturnProductList { get; set; } = new List<IProduct>();
+
+
+            public IProduct FindProductForBarcode(string barcode)
             {
-                new Product("01", "Test product 01!", 0.01m),
-                new Product("02", "Test product 02!", 0.02m)
-            };
-            ProductCatalogus = new ProductCatalogus(ProductList);
-            Kassa = new Kassa(ProductCatalogus);
-            Console = new ConsoleKassaInterface(Kassa);
-            // Kassa.setDisplay(Console);
-        }
-
-        [Test]
-        public void TestFindProductForBarcode()
-        {
-            // repare
-            PrepareNormalKassa();
-
-            // test
-            var isNull = ProductCatalogus.FindProductForBarcode("04");
-            var product = ProductCatalogus.FindProductForBarcode("01");
-            var product2 = ProductCatalogus.FindProductForBarcode("kaas");
-
-            // validate
-            if (isNull != null && product2 != null)
-            {
-                Assert.Fail("Product found where none should be.");
+                return ReturnProduct;
             }
 
-            if (product == null)
+            public IList<IProduct> GetAllProducts()
             {
-                Assert.Fail("No product found.");
+                return ReturnProductList;
             }
         }
-
     }
 }
