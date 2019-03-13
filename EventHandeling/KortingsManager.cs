@@ -38,7 +38,6 @@ namespace EventHandeling
 
                 Cart.RemoveAll(p => p.Barcode == product.Barcode);
                 RaiseDiscountAProduct(discountProduct);
-
             }
         }
         protected virtual void RaiseDiscountAProduct(IProduct product) 
