@@ -7,7 +7,6 @@ namespace EventHandeling
     public class Kassa : IKassa
     {
         public IProductCatalogus Catalogus { get; set; }
-        // private IKassaDisplay Display { get; set; } = null;
         public List<IProduct> Cart { get; set; } = new List<IProduct>();
         public event EventHandler<BarcodeEventArgs> BarcodeScanned;
         public event EventHandler<PaymentMadeEventArgs> PaymentMade;

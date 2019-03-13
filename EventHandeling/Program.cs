@@ -23,7 +23,9 @@ namespace EventHandeling
             kassa.BarcodeScanned += manager.RaiseBarcodeScaned;
             kassa.PaymentMade += printer.RaisePayment;
 
-            manager.DiscountAProduct += kassa.DiscountProduct;
+            kassa.PaymentMade += manager.RaisePayment;;
+
+            manager.DiscountAProduct += kassa.RaiseDiscountProduct;
 
             console.Run();
         }

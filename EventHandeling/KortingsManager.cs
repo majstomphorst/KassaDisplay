@@ -42,5 +42,12 @@ namespace EventHandeling
                 DiscountAProduct(this, new BarcodeEventArgs(product));
             }
         }
+        public void RaisePayment(object sourcre, PaymentMadeEventArgs e)
+        {
+            Cart = new List<IProduct>();
+        }
+
+        
+
     }
 }
