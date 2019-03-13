@@ -6,9 +6,15 @@ namespace EventHandeling
 {
     public class KortingsManager
     {
-        private List<IProduct> Cart {get; set;} = new List<IProduct>();
+        private List<IProduct> Cart {get; set;}
         public event EventHandler<BarcodeEventArgs> DiscountAProduct;
         public delegate void DiscountProductsFound(object source, ProductsEventArgs e); 
+        
+        public KortingsManager()
+        {
+            Cart = new List<IProduct>();
+        }
+        
         public void RaiseBarcodeScaned(object source, BarcodeEventArgs e)
         {
             Cart.Add(e.Product);

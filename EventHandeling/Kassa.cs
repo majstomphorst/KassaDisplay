@@ -113,7 +113,7 @@ namespace EventHandeling
             copyOfPaymentMade?.Invoke(this, new PaymentMadeEventArgs(Cart));
         }
         
-        public void DiscountProduct(object obj, BarcodeEventArgs e)
+        public void RaiseDiscountProduct(object obj, BarcodeEventArgs e)
         {
             Cart.Add(e.Product);
         }
