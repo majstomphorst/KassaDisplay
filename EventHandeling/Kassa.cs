@@ -113,6 +113,11 @@ namespace EventHandeling
             var copyOfPaymentMade = PaymentMade;
             copyOfPaymentMade?.Invoke(this, new PaymentMadeEventArgs(Cart));
         }
+        
+        public void DiscountProduct(object obj, BarcodeEventArgs e)
+        {
+            Cart.Add(e.Product);
+        }
 
     }
 }
