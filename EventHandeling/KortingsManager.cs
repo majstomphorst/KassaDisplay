@@ -7,7 +7,6 @@ namespace EventHandeling
     public class KortingsManager
     {
         private List<IProduct> Cart {get; set;} = new List<IProduct>();
-        private List<DiscountProducts> DiscountProducts = new List<DiscountProducts>();
         public event EventHandler<BarcodeEventArgs> DiscountAProduct;
         public delegate void DiscountProductsFound(object source, ProductsEventArgs e); 
         public void RaiseBarcodeScaned(object source, BarcodeEventArgs e)
@@ -18,15 +17,18 @@ namespace EventHandeling
 
         private void checkCartForDiscount() 
         {
-            var discountProductGroup = Cart.Where(product =>  product.GetType() == typeof(Product))
-                                            .GroupBy(product => product.Barcode)
-                                            .Where(group => group.Count() >= 3)
-                                            .FirstOrDefault();
+            // filter Cart only get type(Product) and group the products by barcode
+            var productGroupBarcode = Cart.Where(product =>  product.GetType() == typeof(Product))
+                                          .GroupBy(product => product.Barcode);
+
+            // get one item if 3 or more are the same product
+            var discountProductGroup = productGroupBarcode.Where(group => group.Count() >= 3)
+                                                          .FirstOrDefault();
 
             if (discountProductGroup != null) {
                 var product = discountProductGroup.First();
                 var discountProduct = new DiscountProducts(product);
-                DiscountProducts.Add(discountProduct);
+                Cart.Add(discountProduct);
 
                 Cart.RemoveAll(p => p.Barcode == product.Barcode);
                 RaiseDiscountAProduct(discountProduct);
