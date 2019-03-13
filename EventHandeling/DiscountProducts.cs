@@ -7,7 +7,7 @@ namespace EventHandeling
         public decimal Discount { get { return -1m * Amount; } }     
         public DiscountProducts(IProduct product) 
                                 : base(product.Barcode, 
-                                       product.Description + "---YOU GOT DISCOUNT <3", 
+                                       "YOU GOT DISCOUNT", 
                                        ((product.Amount * 3) / 100 * 25) * -1)
         {
         } 

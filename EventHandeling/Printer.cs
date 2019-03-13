@@ -14,7 +14,7 @@ namespace EventHandeling
             System.Console.WriteLine();
             foreach (var product in SortedCart )
             {
-                System.Console.WriteLine(product.ToString());
+                System.Console.WriteLine(product.ToFormattedString());
             }
             System.Console.WriteLine();
             Console.ResetColor();

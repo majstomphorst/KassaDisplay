@@ -18,7 +18,10 @@ namespace EventHandeling
 
         private void checkCartForDiscount() 
         {
-            var discountProductGroup = Cart.GroupBy(product => product.Barcode).Where(group => group.Count() >= 3).FirstOrDefault();
+            var discountProductGroup = Cart.Where(product =>  product.GetType() == typeof(Product))
+                                            .GroupBy(product => product.Barcode)
+                                            .Where(group => group.Count() >= 3)
+                                            .FirstOrDefault();
 
             if (discountProductGroup != null) {
                 var product = discountProductGroup.First();
