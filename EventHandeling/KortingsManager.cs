@@ -6,6 +6,8 @@ namespace EventHandeling
 {
     public class KortingsManager
     {
+        private DiscountCheck DiscountCheck {get; set;}
+        private List<Tuple<int, decimal>> DiscountRules {get; set;}
         private List<IProduct> Cart {get; set;}
         public event EventHandler<BarcodeEventArgs> DiscountAProduct;
         public delegate void DiscountProductsFound(object source, ProductsEventArgs e); 
@@ -13,8 +15,12 @@ namespace EventHandeling
         public KortingsManager()
         {
             Cart = new List<IProduct>();
+            DiscountRules = new List<Tuple< int, decimal>>
+            {
+                Tuple.Create(3, 0.25m)
+            };
         }
-        
+
         public void RaiseBarcodeScaned(object source, BarcodeEventArgs e)
         {
             Cart.Add(e.Product);
@@ -23,22 +29,22 @@ namespace EventHandeling
 
         private void checkCartForDiscount() 
         {
-            // filter Cart only get type(Product) and group the products by barcode
-            var productGroupBarcode = Cart.Where(product =>  product.GetType() == typeof(Product))
-                                          .GroupBy(product => product.Barcode);
+            foreach (var discountRule in DiscountRules)
+            {
+                DiscountCheck = new DiscountCheck(discountRule.Item1, discountRule.Item2);
 
-            // get one item if 3 or more are the same product
-            var discountProductGroup = productGroupBarcode.Where(group => group.Count() >= 3)
-                                                          .FirstOrDefault();
+                var ItemsToRemoveFromCart = DiscountCheck.CheckForDiscount(Cart);
 
-            if (discountProductGroup != null) {
-                var product = discountProductGroup.First();
-                var discountProduct = new DiscountProducts(product);
-                Cart.Add(discountProduct);
+                if (ItemsToRemoveFromCart != null) {
+                    RaiseDiscountAProduct(DiscountCheck.DiscountProduct);
 
-                Cart.RemoveAll(p => p.Barcode == product.Barcode);
-                RaiseDiscountAProduct(discountProduct);
+                    foreach (var item in ItemsToRemoveFromCart)
+                    {
+                        Cart.Remove(item);
+                    }
+                }
             }
+            
         }
         protected virtual void RaiseDiscountAProduct(IProduct product) 
         {
@@ -52,7 +58,6 @@ namespace EventHandeling
             Cart = new List<IProduct>();
         }
 
-        
 
     }
 }

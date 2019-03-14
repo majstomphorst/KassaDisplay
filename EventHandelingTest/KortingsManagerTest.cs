@@ -54,7 +54,6 @@ namespace EventHandelingTest
             km.RaiseBarcodeScaned(null,product1);
             km.RaiseBarcodeScaned(null,product1);
             km.RaiseBarcodeScaned(null,product1);
-            km.RaisePayment(null,null);
             km.RaiseBarcodeScaned(null,product1);
             km.RaiseBarcodeScaned(null,product1);
 
@@ -68,7 +67,7 @@ namespace EventHandelingTest
         }
 
         [Test]
-        public void TestSingleDiscounWithCheckOutAfter2() 
+        public void TestNODiscounWithCheckOutAfter2() 
         {
             // prepare
             var discountProducts = new List<IProduct>();
@@ -86,15 +85,9 @@ namespace EventHandelingTest
             km.RaisePayment(null,null);
             km.RaiseBarcodeScaned(null,product1);
             km.RaiseBarcodeScaned(null,product1);
-            km.RaiseBarcodeScaned(null,product1);
 
             // validate
-            Assert.IsNotEmpty(discountProducts);
-            Assert.AreEqual(1, discountProducts.Count);
-            Assert.AreEqual(-0.75m, discountProducts[0].Amount);
-            Assert.AreEqual("DISCOUNT ON" + product1.Product.Description , discountProducts[0].Description);
-
-            Assert.AreEqual(2,product1.Product.Amount + product1.Product.Amount);
+            Assert.IsEmpty(discountProducts);
         }
 
         [Test]
@@ -130,7 +123,7 @@ namespace EventHandelingTest
         }
 
         [Test]
-        public void TestDiscountTwiseDivergentProducts() 
+        public void TestDiscountTwiseDifferentgentProducts() 
         {
             // prepare
             var discountProducts = new List<IProduct>();

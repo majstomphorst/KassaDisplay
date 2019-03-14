@@ -2,13 +2,13 @@ using System;
 
 namespace EventHandeling
 {
-    public class DiscountProducts : Product
+    public class DiscountProduct : Product
     {
-        public decimal Discount { get { return -1m * Amount; } }     
-        public DiscountProducts(IProduct product) 
+        public decimal Discount { get { return -1m * Amount; } }
+        public DiscountProduct(IProduct product,int n,decimal percentage) 
                                 : base(product.Barcode, 
                                        "DISCOUNT ON" + product.Description, 
-                                       ((product.Amount * 3) / 100 * 25) * -1)
+                                       ((product.Amount * n) * percentage * -1))
         {
         } 
     }
