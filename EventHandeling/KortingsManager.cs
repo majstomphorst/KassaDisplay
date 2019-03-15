@@ -6,8 +6,7 @@ namespace EventHandeling
 {
     public class KortingsManager
     {
-        private DiscountCheck DiscountCheck {get; set;}
-        private List<Tuple<int, decimal>> DiscountRules {get; set;}
+        private List<IDiscountCheck> DiscountRules {get; } = new List<IDiscountCheck>();
         private List<IProduct> Cart {get; set;}
         public event EventHandler<BarcodeEventArgs> DiscountAProduct;
         public delegate void DiscountProductsFound(object source, ProductsEventArgs e); 
@@ -15,10 +14,12 @@ namespace EventHandeling
         public KortingsManager()
         {
             Cart = new List<IProduct>();
-            DiscountRules = new List<Tuple< int, decimal>>
-            {
-                Tuple.Create(3, 0.25m)
-            };
+        }
+        public void addQuantityDiscountRule(int n, decimal percentage) {
+            DiscountRules.Add(new QuantityDiscount(n, percentage));
+        }
+        public void addQuantityCombinationDiscount(List<string> barcodes, int n, decimal percentage) {
+            DiscountRules.Add(new QuantityCombinationDiscount(barcodes,  n,  percentage));
         }
 
         public void RaiseBarcodeScaned(object source, BarcodeEventArgs e)
@@ -28,20 +29,15 @@ namespace EventHandeling
         }
 
         private void checkCartForDiscount() 
-        {
+        {  
             foreach (var discountRule in DiscountRules)
             {
-                DiscountCheck = new DiscountCheck(discountRule.Item1, discountRule.Item2);
+                var itemsToRemoveFromCart = discountRule.CheckForDiscount(Cart);
+                if (itemsToRemoveFromCart != null) {
+                    RaiseDiscountAProduct(discountRule.DiscountProduct);
+                    itemsToRemoveFromCart.Select(product => Cart.Remove(product)).ToList();
 
-                var ItemsToRemoveFromCart = DiscountCheck.CheckForDiscount(Cart);
-
-                if (ItemsToRemoveFromCart != null) {
-                    RaiseDiscountAProduct(DiscountCheck.DiscountProduct);
-
-                    foreach (var item in ItemsToRemoveFromCart)
-                    {
-                        Cart.Remove(item);
-                    }
+                    if (!discountRule.ContinueAfterDiscount) { return; }
                 }
             }
             
