@@ -26,5 +26,6 @@
     <PkgNUnit_Extension_NUnitV2Driver Condition=" '$(PkgNUnit_Extension_NUnitV2Driver)' == '' ">/Users/maj/.nuget/packages/nunit.extension.nunitv2driver/3.6.0</PkgNUnit_Extension_NUnitV2Driver>
     <PkgNUnit_Extension_NUnitProjectLoader Condition=" '$(PkgNUnit_Extension_NUnitProjectLoader)' == '' ">/Users/maj/.nuget/packages/nunit.extension.nunitprojectloader/3.5.0</PkgNUnit_Extension_NUnitProjectLoader>
     <PkgNUnit_ConsoleRunner Condition=" '$(PkgNUnit_ConsoleRunner)' == '' ">/Users/maj/.nuget/packages/nunit.consolerunner/3.9.0</PkgNUnit_ConsoleRunner>
+    <PkgNewtonsoft_Json Condition=" '$(PkgNewtonsoft_Json)' == '' ">/usr/local/share/dotnet/sdk/NuGetFallbackFolder/newtonsoft.json/9.0.1</PkgNewtonsoft_Json>
   </PropertyGroup>
 </Project>

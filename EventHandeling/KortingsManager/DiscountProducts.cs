@@ -11,9 +11,9 @@ namespace EventHandeling
                                        discount)
         {
         }
-        public DiscountProduct(decimal discount) 
+        public DiscountProduct(decimal discount, string description) 
                                 : base("D-", 
-                                  "DISCOUNT", 
+                                  description, 
                                   discount)
         {
         }

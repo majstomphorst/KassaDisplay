@@ -6,12 +6,12 @@
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/bin/Debug/netcoreapp2.1/EventHandelingTest.runtimeconfig.dev.json
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/bin/Debug/netcoreapp2.1/EventHandelingTest.dll
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/bin/Debug/netcoreapp2.1/EventHandelingTest.pdb
+/Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/bin/Debug/netcoreapp2.1/EventHandeling.dll
+/Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/bin/Debug/netcoreapp2.1/EventHandeling.pdb
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/obj/Debug/netcoreapp2.1/EventHandelingTest.csprojAssemblyReference.cache
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/obj/Debug/netcoreapp2.1/EventHandelingTest.csproj.CoreCompileInputs.cache
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/obj/Debug/netcoreapp2.1/EventHandelingTest.AssemblyInfoInputs.cache
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/obj/Debug/netcoreapp2.1/EventHandelingTest.AssemblyInfo.cs
+/Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/obj/Debug/netcoreapp2.1/EventHandelingTest.csproj.CopyComplete
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/obj/Debug/netcoreapp2.1/EventHandelingTest.dll
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/obj/Debug/netcoreapp2.1/EventHandelingTest.pdb
-/Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/bin/Debug/netcoreapp2.1/EventHandeling.dll
-/Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/bin/Debug/netcoreapp2.1/EventHandeling.pdb
-/Users/maj/Documents/code/c_sharp/EventHandeling/EventHandelingTest/obj/Debug/netcoreapp2.1/EventHandelingTest.csproj.CopyComplete

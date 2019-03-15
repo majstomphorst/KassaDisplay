@@ -1,17 +1,3 @@
-/Users/maj/Documents/code/c_sharp/EventHandeling/obj/Debug/netcoreapp2.1/EventHandeling.csprojAssemblyReference.cache
-/Users/maj/Documents/code/c_sharp/EventHandeling/obj/Debug/netcoreapp2.1/EventHandeling.csproj.CoreCompileInputs.cache
-/Users/maj/Documents/code/c_sharp/EventHandeling/obj/Debug/netcoreapp2.1/EventHandeling.AssemblyInfoInputs.cache
-/Users/maj/Documents/code/c_sharp/EventHandeling/obj/Debug/netcoreapp2.1/EventHandeling.AssemblyInfo.cs
-/Users/maj/Documents/code/c_sharp/EventHandeling/bin/Debug/netcoreapp2.1/EventHandeling.deps.json
-/Users/maj/Documents/code/c_sharp/EventHandeling/bin/Debug/netcoreapp2.1/EventHandeling.runtimeconfig.json
-/Users/maj/Documents/code/c_sharp/EventHandeling/bin/Debug/netcoreapp2.1/EventHandeling.runtimeconfig.dev.json
-/Users/maj/Documents/code/c_sharp/EventHandeling/bin/Debug/netcoreapp2.1/EventHandeling.dll
-/Users/maj/Documents/code/c_sharp/EventHandeling/bin/Debug/netcoreapp2.1/EventHandeling.pdb
-/Users/maj/Documents/code/c_sharp/EventHandeling/obj/Debug/netcoreapp2.1/EventHandeling.dll
-/Users/maj/Documents/code/c_sharp/EventHandeling/obj/Debug/netcoreapp2.1/EventHandeling.pdb
-/Users/maj/Documents/code/c_sharp/EventHandeling/bin/Debug/netcoreapp2.1/NUnit3.TestAdapter.dll
-/Users/maj/Documents/code/c_sharp/EventHandeling/bin/Debug/netcoreapp2.1/NUnit3.TestAdapter.pdb
-/Users/maj/Documents/code/c_sharp/EventHandeling/bin/Debug/netcoreapp2.1/nunit.engine.netstandard.dll
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandeling/bin/Debug/netcoreapp2.1/NUnit3.TestAdapter.dll
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandeling/bin/Debug/netcoreapp2.1/NUnit3.TestAdapter.pdb
 /Users/maj/Documents/code/c_sharp/EventHandeling/EventHandeling/bin/Debug/netcoreapp2.1/nunit.engine.netstandard.dll

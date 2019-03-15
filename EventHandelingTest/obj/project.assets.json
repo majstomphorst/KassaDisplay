@@ -2605,6 +2605,7 @@
       "sha512": "U82mHQSKaIk+lpSVCbWYKNavmNH1i5xrExDEquU1i6I5pV6UMOqRnJRSlKO3cMPfcpp0RgDY+8jUXHdQ4IfXvw==",
       "type": "package",
       "path": "newtonsoft.json/9.0.1",
+      "hasTools": true,
       "files": [
         ".nupkg.metadata",
         "lib/net20/Newtonsoft.Json.dll",

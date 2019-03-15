@@ -21,6 +21,13 @@ namespace EventHandeling
         public void addQuantityCombinationDiscount(List<string> barcodes, int n, decimal percentage) {
             DiscountRules.Add(new QuantityCombinationDiscount(barcodes,  n,  percentage));
         }
+        public void addQuantitySpecificDiscount(List<string> barcodes, int n, decimal percentage) {
+            DiscountRules.Add(new QuantitySpecificDiscount(barcodes, n, percentage));
+        }
+        public void QuantityCombinationDiscountFromProduct(List<string> barcodes, int n, decimal percentage) {
+            DiscountRules.Add(new QuantityCombinationDiscountFromProduct(barcodes,  n,  percentage));
+        }
+
 
         public void RaiseBarcodeScaned(object source, BarcodeEventArgs e)
         {

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace EventHandeling
 {
-    public class QuantityCombinationDiscount : IDiscountCheck
+    public class QuantityCombinationDiscountFromProduct : IDiscountCheck
     {
         public DiscountProduct DiscountProduct { get; private set;}
         public bool ContinueAfterDiscount {get;} = true;
@@ -11,14 +11,12 @@ namespace EventHandeling
         private decimal Percentage { get; set; }
         private List<string> Barcodes { get; set; }
     
-        public QuantityCombinationDiscount(List<string> barcodes, int n, decimal percentage)
+        public QuantityCombinationDiscountFromProduct(List<string> barcodes, int n, decimal percentage)
         {
-            if (barcodes.Count == 2 && n > 0 && percentage > 0 )
-            {
-                Barcodes = barcodes;
-                N = n;
-                Percentage = percentage;
-            }
+            // TODO: check for valid values
+            Barcodes = barcodes;
+            N = n;
+            Percentage = percentage;
         }
 
         public List<IProduct> CheckForDiscount(List<IProduct> cart)
@@ -27,18 +25,24 @@ namespace EventHandeling
             var posibleProductsForDiscount = cart.Where(product =>  product.GetType() == typeof(Product))
                                      .Where(product => Barcodes.Contains(product.Barcode));
             
+            var amountOfGroups = posibleProductsForDiscount.GroupBy(group => group.Barcode).Count();
 
-            if (posibleProductsForDiscount.Count() == N) {
-                System.Console.WriteLine("DISCOUNT!");
+            if (posibleProductsForDiscount.Count() == N && amountOfGroups == 2) {
                 
+                string description = "discount-A+B-0,45c-";
                 decimal cartPrice = 0m;
+                decimal discount = posibleProductsForDiscount.First().Amount;
                 foreach (var product in posibleProductsForDiscount)
                 {
+                    if (product.Amount < discount) {
+                        discount = product.Amount;
+                    }
                     cartPrice += product.Amount;
+                    description += product.Barcode + "-";
                 }
+                
 
-                var discount = cartPrice * Percentage * -1;
-                DiscountProduct = new DiscountProduct(discount);
+                DiscountProduct = new DiscountProduct(discount * -1,description);
 
                 return posibleProductsForDiscount.ToList();            
             }
