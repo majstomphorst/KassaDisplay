@@ -18,7 +18,7 @@ namespace EventHandelingTest
             var barcodes = new List<string>();
             barcodes.Add("02");
             barcodes.Add("01");
-            km.addQuantityCombinationDiscount(barcodes, 5, 0.10m);
+            km.CombinationDiscount(barcodes, 5, 0.10m);
             var product1 = new BarcodeEventArgs(new Product("02", "Test product 02!", 1m));
 
             km.DiscountAProduct += (sender, e) =>
@@ -41,7 +41,7 @@ namespace EventHandelingTest
         }
 
         [Test]
-        public void TestQuantityCombinationDiscountWithThreeProducts()
+        public void TestQuantityCombinationDiscountThreeProducts()
         {
             // test
             var discountProducts = new List<IProduct>();
@@ -50,7 +50,7 @@ namespace EventHandelingTest
             barcodes.Add("02");
             barcodes.Add("03");
 
-            km.addQuantityCombinationDiscount(barcodes, 5 ,0.2m);
+            km.CombinationDiscount(barcodes, 5 ,0.2m);
 
             var product1 = new BarcodeEventArgs(new Product("01", "Test product 01!", 1m));
             var product2 = new BarcodeEventArgs(new Product("02", "Test product 02!", 1.4m));
@@ -86,8 +86,9 @@ namespace EventHandelingTest
             barcodes.Add("02");
             barcodes.Add("03");
 
-            km.addQuantityCombinationDiscount(barcodes, 4 ,0.2m);
+            km.CombinationDiscount(barcodes, 4 ,0.2m);
 
+            var product1 = new BarcodeEventArgs(new Product("01", "Test product 01!", 100m));
             var product2 = new BarcodeEventArgs(new Product("02", "Test product 02!", 1.4m));
             var product3 = new BarcodeEventArgs(new Product("03", "Test product 03!", 11m));
 
@@ -98,6 +99,7 @@ namespace EventHandelingTest
 
             // test
             km.RaiseBarcodeScaned(null, product3);
+            km.RaiseBarcodeScaned(null,product1);
             km.RaiseBarcodeScaned(null, product3);
             km.RaiseBarcodeScaned(null, product2);
 

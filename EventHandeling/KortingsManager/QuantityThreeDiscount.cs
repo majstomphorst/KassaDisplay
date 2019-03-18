@@ -3,23 +3,20 @@ using System.Linq;
 
 namespace EventHandeling
 {
-    public class QuantityDiscount : IDiscountCheck
+    public class QuantityThreeDiscount : IDiscountCheck
     {
-        public DiscountProduct DiscountProduct { get; private set;}
+        public DiscountProduct DiscountProduct { get; set;}
         public bool ContinueAfterDiscount {get;} = true;
-        private int N { get; set; }
-        private decimal Percentage { get; set; }
+        protected int N { get; set; }
+        protected decimal Percentage { get; set; }
     
-        public QuantityDiscount(int n, decimal percentage)
+        public QuantityThreeDiscount(int n = 3, decimal percentage = 0.25m)
         {
-            if (n > 0 && percentage > 0 )
-            {
-                N = n;
-                Percentage = percentage;
-            }
+            N = n;
+            Percentage = percentage;
         }
 
-        public List<IProduct> CheckForDiscount(List<IProduct> cart)
+        public virtual List<IProduct> CheckForDiscount(List<IProduct> cart)
         {
             // filter Cart only get type(Product) and group the products by barcode
             var productGroupBarcode = cart.Where(product =>  product.GetType() == typeof(Product))
@@ -31,10 +28,8 @@ namespace EventHandeling
 
             if (discountProductGroup != null) {
                 var product = discountProductGroup.First();
-
                 decimal discount = ((product.Amount * N) * Percentage) * -1;
                 DiscountProduct = new DiscountProduct(product, discount);
-
                 return discountProductGroup.ToList();                
             }
 

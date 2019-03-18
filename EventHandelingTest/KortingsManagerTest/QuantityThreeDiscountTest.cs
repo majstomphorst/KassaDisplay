@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace EventHandelingTest
 {
     [TestFixture]
-    public class QuantityDiscountTest
+    public class QuantityThreeDiscountTest
     {
         [Test]
         public void TestSingleDiscount() 
@@ -15,7 +15,7 @@ namespace EventHandelingTest
             // prepare
             var discountProducts = new List<IProduct>();
             var km = new KortingsManager();
-            km.addQuantityDiscountRule(3,0.25m);
+            km.QuantityThreeDiscount();
 
             var product1 = new BarcodeEventArgs(new Product("01", "Test product 01!", 1m));
             var product2 = new BarcodeEventArgs(new Product("02", "Test product 02!", 4m));
@@ -45,7 +45,7 @@ namespace EventHandelingTest
             // prepare
             var discountProducts = new List<IProduct>();
             var km = new KortingsManager();
-            km.addQuantityDiscountRule(3,0.25m);
+            km.QuantityThreeDiscount();
             var product1 = new BarcodeEventArgs(new Product("01", "Test product 01!", 1m));
 
             km.DiscountAProduct += (sender, e) =>
@@ -75,7 +75,7 @@ namespace EventHandelingTest
             // prepare
             var discountProducts = new List<IProduct>();
             var km = new KortingsManager();
-            km.addQuantityDiscountRule(3,0.25m);
+            km.QuantityThreeDiscount();
             var product1 = new BarcodeEventArgs(new Product("01", "Test product 01!", 1m));
 
             km.DiscountAProduct += (sender, e) =>
@@ -100,7 +100,7 @@ namespace EventHandelingTest
             // prepare
             var discountProducts = new List<IProduct>();
             var km = new KortingsManager();
-            km.addQuantityDiscountRule(3,0.25m);
+            km.QuantityThreeDiscount();
             var product1 = new BarcodeEventArgs(new Product("01", "Test product 01!", 1m));
 
             km.DiscountAProduct += (sender, e) =>
@@ -133,7 +133,7 @@ namespace EventHandelingTest
             // prepare
             var discountProducts = new List<IProduct>();
             var km = new KortingsManager();
-            km.addQuantityDiscountRule(3,0.25m);
+            km.QuantityThreeDiscount();
             var product1 = new BarcodeEventArgs(new Product("01", "Test product 01!", 1m));
             var product2 = new BarcodeEventArgs(new Product("02", "Test product 02!", 1.4m));
 

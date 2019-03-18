@@ -3,25 +3,17 @@ using System.Linq;
 
 namespace EventHandeling
 {
-    public class QuantityCombinationDiscount : IDiscountCheck
+    public class CombinationDiscount : QuantityThreeDiscount
     {
-        public DiscountProduct DiscountProduct { get; private set;}
-        public bool ContinueAfterDiscount {get;} = true;
-        private int N { get; set; }
-        private decimal Percentage { get; set; }
         private List<string> Barcodes { get; set; }
-    
-        public QuantityCombinationDiscount(List<string> barcodes, int n, decimal percentage)
+
+        public CombinationDiscount (List<string> barcodes,int n, decimal percentage)
+                             :base (n, percentage) 
         {
-            if (barcodes.Count == 2 && n > 0 && percentage > 0 )
-            {
-                Barcodes = barcodes;
-                N = n;
-                Percentage = percentage;
-            }
+            Barcodes = barcodes;
         }
 
-        public List<IProduct> CheckForDiscount(List<IProduct> cart)
+        public override List<IProduct> CheckForDiscount(List<IProduct> cart)
         {
             // filter Cart only get type(Product) and group the products by barcode
             var posibleProductsForDiscount = cart.Where(product =>  product.GetType() == typeof(Product))
@@ -41,7 +33,7 @@ namespace EventHandeling
 
                 var discount = cartPrice * Percentage * -1;
                 DiscountProduct = new DiscountProduct(discount,description);
-
+                
                 return posibleProductsForDiscount.ToList();            
             }
 

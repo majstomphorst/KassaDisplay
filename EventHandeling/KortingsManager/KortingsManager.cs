@@ -15,17 +15,17 @@ namespace EventHandeling
         {
             Cart = new List<IProduct>();
         }
-        public void addQuantityDiscountRule(int n, decimal percentage) {
-            DiscountRules.Add(new QuantityDiscount(n, percentage));
+        public void QuantityThreeDiscount() {
+            DiscountRules.Add(new QuantityThreeDiscount());
         }
-        public void addQuantityCombinationDiscount(List<string> barcodes, int n, decimal percentage) {
-            DiscountRules.Add(new QuantityCombinationDiscount(barcodes,  n,  percentage));
+        public void CombinationDiscount(List<string> barcodes, int n, decimal percentage) {
+            DiscountRules.Add(new CombinationDiscount(barcodes,  n,  percentage));
         }
-        public void addQuantitySpecificDiscount(List<string> barcodes, int n, decimal percentage) {
-            DiscountRules.Add(new QuantitySpecificDiscount(barcodes, n, percentage));
+        public void CombinationDiscountOfProduct(List<string> barcodes, int n) {
+            DiscountRules.Add(new CombinationDiscountOfProduct(barcodes, n));
         }
-        public void QuantityCombinationDiscountFromProduct(List<string> barcodes, int n, decimal percentage) {
-            DiscountRules.Add(new QuantityCombinationDiscountFromProduct(barcodes,  n,  percentage));
+        public void TwoProductDiscount(List<string> barcodes, decimal staticDiscount) {
+            DiscountRules.Add(new TwoProductDiscount(barcodes,staticDiscount));
         }
 
 

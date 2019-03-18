@@ -3,15 +3,15 @@ using System.Linq;
 
 namespace EventHandeling
 {
-    public class CombinationDiscountOfProduct : QuantityThreeDiscount
+    public class TwoProductDiscount : QuantityThreeDiscount
     {
         private List<string> Barcodes { get; set; }
-        
-        public CombinationDiscountOfProduct(List<string> barcodes, int n)
-                                            :base(n) 
+        private decimal StaticDiscount{ get; set; }
+    
+        public TwoProductDiscount(List<string> barcodes,decimal staticDiscount)
         {
-            // TODO: check for valid values
             Barcodes = barcodes;
+            StaticDiscount = staticDiscount;
         }
 
         public override List<IProduct> CheckForDiscount(List<IProduct> cart)
@@ -22,21 +22,18 @@ namespace EventHandeling
             
             var amountOfGroups = posibleProductsForDiscount.GroupBy(group => group.Barcode).Count();
 
-            if (posibleProductsForDiscount.Count() == N && amountOfGroups >= 2) {
+            if (posibleProductsForDiscount.Count() == 2 && amountOfGroups == 2) {
                 
-                string description = "discount-cheapest-";
+                string description = "Discount";
                 decimal cartPrice = 0m;
-                decimal discount = posibleProductsForDiscount.First().Amount;
+
                 foreach (var product in posibleProductsForDiscount)
                 {
-                    if (product.Amount < discount) {
-                        discount = product.Amount;
-                    }
                     cartPrice += product.Amount;
-                    description += product.Barcode + "-";
+                    description += "-" + product.Barcode;
                 }
                 
-                DiscountProduct = new DiscountProduct(discount * -1,description);
+                DiscountProduct = new DiscountProduct((cartPrice - StaticDiscount) * -1, description);
 
                 return posibleProductsForDiscount.ToList();            
             }
